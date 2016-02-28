@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var webView: UIWebView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +28,7 @@ class ViewController: UIViewController {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) -> Void in
             
             
-            // Will happen when task completes .
+            // Will happen when task completes.
             // 3. Only runs when data is detected.. so only proper links and when user has internet. Won't crash.
             
             if let urlContent = data {
@@ -35,18 +37,29 @@ class ViewController: UIViewController {
                 
                 let webContent = NSString(data: urlContent, encoding: NSUTF8StringEncoding)
                 
-                print(webContent)
+                // 5. It may take a while for the queue to finish. Add this to ensure no synchronization problems occur.
                 
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                
+                // 6. Display actual content.
+                
+                self.webView.loadHTMLString(String(webContent!), baseURL: nil)
+                    
+                })
+             
+        
+            
             } else {
                 
-                print("Something went wrong.")
+                // Print error message
                 
             }
             
             
         }
         
-        // 5. Run the task
+        // 7. Run the task
         
         task.resume()
         
