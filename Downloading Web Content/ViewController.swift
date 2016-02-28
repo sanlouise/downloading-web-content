@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         
         
         // 1. Define web address
-        // By default, NSURL produces 'optional'  get rid of this with '!'
+        // By default, NSURL produces 'optional'  get rid of this with '!'. Needs to be https unless defined as safe in Info.plist file (NSApp file and NSAllows file)!
         
         let url = NSURL(string: "http://www.stackoverflow.com")!
         
@@ -26,10 +26,25 @@ class ViewController: UIViewController {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) -> Void in
             
             
-            // Will happen when task completes 
+            // Will happen when task completes .
+            // 3. Only runs when data is detected.. so only proper links and when user has internet. Won't crash.
+            
+            if let urlContent = data {
+                
+                print(urlContent)
+                
+            } else {
+                
+                print("Something went wrong.")
+                
+            }
             
             
         }
+        
+        // 4. Run the task
+        
+        task.resume()
         
         
     }
