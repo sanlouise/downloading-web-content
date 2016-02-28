@@ -6,6 +6,17 @@
 //  Copyright © 2016 Sandra Adams-Hallie. All rights reserved.
 //
 
+
+/* NOTE : It is also possible to instead ONLY use, directly after 'let url' -----
+
+webView.loadRequest(NSURLRequest(URL: url))
+
+This results in a display of both HTML and CSS on the page.
+
+The code below downloads the content to the app and can be manipulated.
+
+*/
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -73,4 +84,7 @@ class ViewController: UIViewController {
 
 
 }
+
+
+
 
