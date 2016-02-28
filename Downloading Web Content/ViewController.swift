@@ -31,7 +31,11 @@ class ViewController: UIViewController {
             
             if let urlContent = data {
                 
-                print(urlContent)
+                // 4. Decode web content
+                
+                let webContent = NSString(data: urlContent, encoding: NSUTF8StringEncoding)
+                
+                print(webContent)
                 
             } else {
                 
@@ -42,7 +46,7 @@ class ViewController: UIViewController {
             
         }
         
-        // 4. Run the task
+        // 5. Run the task
         
         task.resume()
         
