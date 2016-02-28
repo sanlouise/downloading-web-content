@@ -12,7 +12,26 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Integrate web content
+        
+        
+        // 1. Define web address
+        // By default, NSURL produces 'optional'  get rid of this with '!'
+        
+        let url = NSURL(string: "http://www.stackoverflow.com")!
+        
+        // 2. Like opening a browser in the app, not in view.. Three variables will be returned.
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) -> Void in
+            
+            
+            // Will happen when task completes 
+            
+            
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
